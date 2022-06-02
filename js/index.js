@@ -43,6 +43,18 @@ function checkremove(e) {
     e.target.parentElement.remove();
     const numberOfChild = todosItems.children.length;
     if (numberOfChild === 1) todosMessage.style.display = "block";
+  } else if (classList[0] === "icon-edit") {
+    const textParentClass = e.target.classList;
+    const currentText = document.querySelector(
+      `.${textParentClass[1]} span`
+    ).innerText;
+    todoInput.value = currentText;
+    searchText = currentText;
+    todoInput.addEventListener("change", (e) => {
+      document.querySelector(`.${textParentClass[1]} span`).innerText =
+        todoInput.value;
+        updateLocalTodo(textParentClass, searchText, todoInput.value);
+    });
   }
 }
 
@@ -109,5 +121,21 @@ function removeLocalTodos(itemClass) {
 function emptyLocalStorage() {
   const empty = [];
   localStorage.setItem("todos", JSON.stringify(empty));
+}
 
+function updateLocalTodo(itemClass, searchText, newText) {
+  const todo = document.querySelector(`.${itemClass} span`);
+  let savedTodos = localStorage.getItem("todos")
+    ? JSON.parse(localStorage.getItem("todos"))
+    : [];
+
+    // console.log(savedTodos);
+  const filterTodos = savedTodos.filter((item) => {
+     return item === searchText ;
+  });
+  
+  for (let i = 0 ; i< filterTodos.length ; i++) {
+    filterTodos[i] = newText;
+  }
+  localStorage.setItem("todos", JSON.stringify(filterTodos));
 }
