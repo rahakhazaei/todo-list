@@ -1,0 +1,247 @@
+@import url(./assets/styles/fonts.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'iranyekan';
+    list-style: none;
+}
+
+:root {
+    --mainColor:#377afd;
+    --white: #fcfeff;
+    --gray:#e0e0e0;
+    /* --textColor:#757575; */
+    --textColor:#fff;
+    --secondaryColor:#bbd6df;
+    --warning:#f97a70;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 62.5%;
+    background-color: var(--mainColor);
+    background-image: url('./assets/images/back3.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* input */
+
+.container {
+    width: 70%;
+    height: auto;
+    border:1px solid #82b2c7;
+    border-radius: 5px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+.todos {
+    /* margin: 2rem; */
+    padding: 2rem 2rem 0;
+    border-bottom: 1px solid var(--secondaryColor);
+}
+
+.todos__input {
+    position: relative;
+    text-align: center;
+}
+
+.todos__input input {
+    width: 100%;
+    padding: 5px 35px;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.todos__input input::placeholder {
+    color: var(--gray);
+    font-size: 1.2rem;
+}
+
+.todos__input .write-icon,
+.todos__input .add-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 5px;
+    font-size: 1.5rem;
+    color: var(--gray);
+}
+
+.todos__input .add-icon-wrapper {
+    left: 0;
+    right: unset;
+    width: 31px;
+    height: 31px;
+    color: var(--mainColor);
+    vertical-align: middle;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.todos__input .add-icon-wrapper:hover {
+    background-color: var(--mainColor);
+    color: var(--white);
+}
+
+@media screen and (min-width:992px) {
+
+    .container {
+        width: 40%;
+    }
+
+    .todos__input input {
+        padding: 10px 45px;
+    }
+
+    .todos__input input::placeholder {
+        font-size: 1.4rem;
+    }
+
+    .todos__input i {
+        font-size: 2rem;
+    }
+
+    .todos__input .add-icon-wrapper {
+        width: 41px;
+        height: 41px;
+        line-height: 2.5;
+    }
+
+    .todos__input .write-icon {
+        font-size: 2rem;
+    }
+}
+
+/* controller */
+
+.todos__controller {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.todos__controller-clear {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: var(--mainColor);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.todos__controller-clear:hover {
+    background-color: var(--white);
+    color: var(--mainColor);
+    border: 1px solid var(--mainColor);
+}
+
+.todos__filter span {
+    text-decoration: none;
+    color :var(--textColor);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.todos__filter span:not(:last-child) {
+    margin-left: 10px;
+}
+
+.todos__filter span:hover {
+    opacity: 0.8;
+    border-bottom: 1px solid var(--textColor);
+}
+
+/* todos items */
+
+.todos-items {
+    padding: 1.5rem 2rem;
+
+}
+
+.todos-items__message {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--textColor);
+}
+
+.todos-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--textColor);
+}
+
+.todos-item:not(:last-child){
+    border-bottom: 1px solid var(--gray);
+    padding-bottom: 1rem;
+}
+
+.todos-item:not(:first-child){
+    padding-top: 1.5rem;
+}
+
+.todos-item__task {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.todos-item__task span {
+    padding-right: 1rem;
+    font-size: 1.3rem;
+}
+
+.icon-trash, .icon-edit {
+    font-size: 1.3rem;
+    padding: 5px;
+    cursor: pointer;
+    color:var(--secondaryColor);
+    filter: drop-shadow(0 10px 4px #4444dd);
+}
+
+.icon-edit {
+    color: var(--textColor);
+}
+
+.icon-edit:hover {
+    color: var(--secondaryColor);
+    transform: scale(1.2);
+}
+
+.icon-trash:hover {
+    color: var(--warning);
+    transform: scale(1.2);
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+@media screen and (min-width:992px) {
+
+    .todos-item__task span {
+        font-size: 1.5rem;
+    }
+}
