@@ -7,7 +7,7 @@ const todosController = document.querySelector(".todos__controller");
 
 //events
 addTaskBtn.addEventListener("click", addTask);
-todosItems.addEventListener("click", checkremove);
+todosItems.addEventListener("click", checkEditRemove);
 todosController.addEventListener("click", controller);
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 
@@ -33,7 +33,7 @@ function createTodoBlock(todoInput) {
   todosItems.appendChild(todosItemDiv);
 }
 
-function checkremove(e) {
+function checkEditRemove(e) {
   const classList = [...e.target.classList];
   if (classList[0] === "todos-item-check") {
     const sibling = e.target.nextElementSibling;
@@ -129,7 +129,6 @@ function updateLocalTodo(itemClass, searchText, newText) {
     ? JSON.parse(localStorage.getItem("todos"))
     : [];
 
-    // console.log(savedTodos);
   const filterTodos = savedTodos.filter((item) => {
      return item === searchText ;
   });

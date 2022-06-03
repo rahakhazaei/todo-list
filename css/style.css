@@ -30,7 +30,6 @@ body {
     background-image: url('../assets/images/back2.svg');
     background-repeat: no-repeat;
     background-position: top center;
-    /* background-position-x: 0; */
     background-size: cover;
     background-attachment: fixed;
 }
