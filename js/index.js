@@ -7,7 +7,7 @@ const todosController = document.querySelector(".todos__controller");
 
 //events
 addTaskBtn.addEventListener("click", addTask);
-todosItems.addEventListener("click", checkEditRemove);
+todosItems.addEventListener("click", checkremove);
 todosController.addEventListener("click", controller);
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 
@@ -33,7 +33,7 @@ function createTodoBlock(todoInput) {
   todosItems.appendChild(todosItemDiv);
 }
 
-function checkEditRemove(e) {
+function checkremove(e) {
   const classList = [...e.target.classList];
   if (classList[0] === "todos-item-check") {
     const sibling = e.target.nextElementSibling;
@@ -53,8 +53,8 @@ function checkEditRemove(e) {
     todoInput.addEventListener("change", (e) => {
       document.querySelector(`.${textParentClass[1]} span`).innerText =
         todoInput.value;
-        updateLocalTodo(textParentClass, searchText, todoInput.value);
-    });
+        updateLocalTodo(textParentClass[1], searchText, todoInput.value);
+    }, {once : true});
   }
 }
 
@@ -128,13 +128,19 @@ function updateLocalTodo(itemClass, searchText, newText) {
   let savedTodos = localStorage.getItem("todos")
     ? JSON.parse(localStorage.getItem("todos"))
     : [];
+  const filterEqualTodos = savedTodos.filter((item) => {
 
-  const filterTodos = savedTodos.filter((item) => {
-     return item === searchText ;
+     return item === searchText;
   });
+
+
+  const filterUnequalTodos = savedTodos.filter((item) => {
+    return item !== searchText;
+ });
   
-  for (let i = 0 ; i< filterTodos.length ; i++) {
-    filterTodos[i] = newText;
+  for (let i = 0 ; i< filterEqualTodos.length ; i++) {
+    filterEqualTodos[i] = newText;
   }
-  localStorage.setItem("todos", JSON.stringify(filterTodos));
+  const updateTodos = [...filterEqualTodos, ...filterUnequalTodos];
+  localStorage.setItem("todos", JSON.stringify(updateTodos));
 }
