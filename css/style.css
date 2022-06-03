@@ -9,7 +9,9 @@
 }
 
 :root {
-    --mainColor:#377afd;
+    /* --mainColor:#377afd; */
+    --mainColor:#0061a1;
+
     --white: #fcfeff;
     --gray:#e0e0e0;
     /* --textColor:#757575; */
@@ -25,12 +27,33 @@ html {
 body {
     font-size: 62.5%;
     background-color: var(--mainColor);
-    background-image: url('../assets/images/back3.svg');
+    background-image: url('../assets/images/back2.svg');
     background-repeat: no-repeat;
     background-position: top center;
     /* background-position-x: 0; */
-    background-size: contain;
+    background-size: cover;
     background-attachment: fixed;
+}
+
+/* Header */
+
+.main-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    color: var(--textColor);
+}
+
+.main-header p {
+    font-size: 1rem;
+    margin: 0.7rem 0;
+    color: var(--gray);
+}
+
+.main-header h1 {
+    text-shadow: 3px 4px 4px rgba(255, 255, 255, 1);
 }
 
 /* input */
@@ -164,7 +187,7 @@ body {
 .todos__filter span {
     text-decoration: none;
     color :var(--textColor);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: bold;
     text-align: center;
     padding-bottom: 5px;
