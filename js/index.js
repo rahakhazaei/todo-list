@@ -12,7 +12,8 @@ todosItems.addEventListener("click", checkEditRemove);
 todosController.addEventListener("click", controller);
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
+  const haveClassEdit = e.target.classList.contains('edit');
+  if (e.key === "Enter" && !haveClassEdit) {
     addTask();
   }
 });
@@ -54,6 +55,7 @@ function checkEditRemove(e) {
     const numberOfChild = todosItems.children.length;
     if (numberOfChild === 1) todosMessage.style.display = "block";
   } else if (classList[0] === "icon-edit") {
+    todoInput.classList.add('edit');
     todoInput.focus();
     const textParentClass = e.target.classList;
     const currentText = document.querySelector(
@@ -68,6 +70,7 @@ function checkEditRemove(e) {
           todoInput.value;
         updateLocalTodo(textParentClass[1], searchText, todoInput.value);
         todoInput.value='';
+        todoInput.classList.remove('edit');
       },
       { once: true }
     );
