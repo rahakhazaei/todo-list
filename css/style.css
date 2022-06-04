@@ -260,7 +260,7 @@ body {
     padding: 5px;
     cursor: pointer;
     color:var(--secondaryColor);
-    filter: drop-shadow(0 10px 4px #4444dd);
+    filter: drop-shadow(0 10px 4px var(--mainColor));
 }
 
 .icon-edit {
