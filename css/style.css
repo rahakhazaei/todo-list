@@ -46,13 +46,13 @@ body {
     color: var(--textColor);
 }
 .main-header p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0.7rem 0;
     color: var(--gray);
 }
 
 .main-header h1 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: center;
     line-height: 2;
     text-shadow: 3px 4px 4px rgba(255, 255, 255, 1);
@@ -78,8 +78,15 @@ body {
         width: 50%;
     }
 
-    .main-header h1{
-        font-size: 1.5rem;
+    .main-header h1, .main-header p {
+        font-size: 1rem;
+    }
+}
+
+@media  screen and (min-width:767px) {
+
+    .main-header h1, .main-header p {
+        font-size: 1.3rem;
     }
 }
 
