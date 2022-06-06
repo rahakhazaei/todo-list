@@ -12,20 +12,22 @@ todosItems.addEventListener("click", checkEditRemove);
 todosController.addEventListener("click", controller);
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoInput.addEventListener("keydown", (e) => {
-  const haveClassEdit = e.target.classList.contains('edit');
+  const haveClassEdit = e.target.classList.contains("edit");
   if (e.key === "Enter" && !haveClassEdit) {
     addTask();
   }
 });
 
-window.onload = ()=> todoInput.focus();
+window.onload = () => todoInput.focus();
 
 //functions
 function addTask(e) {
   todosMessage.style.display = "none";
-  createTodoBlock(todoInput.value);
-  saveLocalTodos(todoInput.value);
-  todoInput.value = "";
+  if (todoInput.value.trim().length > 0) {
+    createTodoBlock(todoInput.value);
+    saveLocalTodos(todoInput.value);
+    todoInput.value = "";
+  }
 }
 
 //create each todo block
@@ -55,7 +57,8 @@ function checkEditRemove(e) {
     const numberOfChild = todosItems.children.length;
     if (numberOfChild === 1) todosMessage.style.display = "block";
   } else if (classList[0] === "icon-edit") {
-    todoInput.classList.add('edit');
+    document.querySelector('.todosValidateMessage').style.display="none";
+    todoInput.classList.add("edit");
     todoInput.focus();
     const textParentClass = e.target.classList;
     const currentText = document.querySelector(
@@ -66,11 +69,17 @@ function checkEditRemove(e) {
     todoInput.addEventListener(
       "change",
       (e) => {
-        document.querySelector(`.${textParentClass[1]} span`).innerText =
+        if (todoInput.value.trim().length > 0) {
+          document.querySelector(`.${textParentClass[1]} span`).innerText =
           todoInput.value;
         updateLocalTodo(textParentClass[1], searchText, todoInput.value);
-        todoInput.value='';
-        todoInput.classList.remove('edit');
+        todoInput.value = "";
+        todoInput.classList.remove("edit");
+        }
+        else {
+          document.querySelector('.todosValidateMessage').style.display="block";
+        }
+        
       },
       { once: true }
     );
